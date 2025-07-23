@@ -6,7 +6,7 @@ import numpy as np
 app = Flask(__name__)
 
 # 2. Load our trained model from disk once, when the server starts
-with open('topic6_iris_deployment/savedmodel.sav', 'rb') as f:
+with open('savedmodel.sav', 'rb') as f:
     model = pickle.load(f)
 
 # 3. Map numerical predictions to human‑readable species names
@@ -25,6 +25,9 @@ species_map = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
 def index():
     result = None
     if request.method == 'POST': # form was submitted 
+
+        print("Form values:", request.form)
+
         try:
             # a) Read and convert form inputs 
             features = [
@@ -33,12 +36,20 @@ def index():
                 float(request.form['petal_length']),
                 float(request.form['petal_width'])
             ]
+
+            print("Converted input:", features)
+
+            sample = np.array([features])
+
             # b) Use model to predict
-            outputs = model.predict([features])
+            outputs = model.predict(sample)
             pred_idx = int(np.argmax(outputs, axis=1)[0]) # pick the index of the highest probability.
+
+            print("Pred:", pred_idx)
 
             # c) Map to species name
             result = species_map.get(pred_idx, 'Unknown')
+
         except Exception:
             result = 'error' # on invalid input
     # 5. Render the HTML template to show the result, passing in our prediction

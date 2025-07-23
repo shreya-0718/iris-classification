@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Title of the page -->
+  <title>Iris Flower Classifier</title>
+
+  <!-- Bootstrap CSS: popular CSS Framework for developing responsive with built-in styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Our custom styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+
+<body>
+  <div class="container py-5">
+    <!-- Main Heading -->
+    <h1 class="text-center mb-4">Iris Flower Classifier</h1>
+
+    <!-- Input form: sends data back to '/' via POST -->
+    <form method="POST">
+      <div class="row g-3 mb-4">
+        <!-- Four inputs for the four measurements -->
+        <div class="col-md-3">
+          <input type="number" step="any" name="sepal_length" class="form-control" placeholder="Sepal Length" required>
+        </div>
+        <div class="col-md-3">
+          <input type="number" step="any" name="sepal_width" class="form-control" placeholder="Sepal Width" required>
+        </div>
+        <div class="col-md-3">
+          <input type="number" step="any" name="petal_length" class="form-control" placeholder="Petal Length" required>
+        </div>
+        <div class="col-md-3">
+          <input type="number" step="any" name="petal_width" class="form-control" placeholder="Petal Width" required>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+      </div>
+    </form>
+
+    <!-- Show the prediction result if available -->
+    {% if result %}
+    <div class="alert alert-info text-center mt-4">
+      {% if result == 'error' %}
+        <strong>Please enter valid numeric values!</strong>
+      {% else %}
+        <strong>Prediction:</strong> {{ result|capitalize }}
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
