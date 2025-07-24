@@ -13,52 +13,61 @@
 
   <!-- Our custom styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+
+  <!-- fonts! -->
+   <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="main">
     <!-- Main Heading -->
     <h1>Iris Flower Classifier</h1>
+    <h3> Enter iris flower measurements to predict its species. </h3>
 
     <!-- Input form: sends data back to '/' via POST -->
-    <form method="POST">
-      <div class="input-row">
-        <div class="input-box">
-          <label>Sepal Length</label>
-          <input type="number" name="sepal_length" step="any" required>
+    <div class="form-in">
+      <form method="POST">
+        <div class="input-row">
+          <div class="input-box">
+            <label>Sepal Length (cm)</label>
+            <input type="number" name="sepal_length" step="any" required>
+          </div>
+          <div class="input-box">
+            <label>Sepal Width (cm)</label>
+            <input type="number" name="sepal_width" step="any" required>
+          </div>
         </div>
-        <div class="input-box">
-          <label>Sepal Width</label>
-          <input type="number" name="sepal_width" step="any" required>
-        </div>
-      </div>
 
-      <div class="input-row">
-        <div class="input-box">
-          <label>Petal Length</label>
-          <input type="number" name="petal_length" step="any" required>
+        <div class="input-row">
+          <div class="input-box">
+            <label>Petal Length (cm)</label>
+            <input type="number" name="petal_length" step="any" required>
+          </div>
+          <div class="input-box">
+            <label>Petal Width (cm)</label>
+            <input type="number" name="petal_width" step="any" required>
+          </div>
         </div>
-        <div class="input-box">
-          <label>Petal Width</label>
-          <input type="number" name="petal_width" step="any" required>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg">Predict!</button>
         </div>
-      </div>
+      </form>
+    </div>
 
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-lg">Predict</button>
-      </div>
-    </form>
-
-    <!-- Show the prediction result if available -->
     {% if result %}
       <div class="{% if result == 'error' %}error-box{% else %}info-box{% endif %}">
         {% if result == 'error' %}
           <strong>Please enter valid numeric values!</strong>
         {% else %}
-          <strong>Prediction:</strong> {{ result|capitalize }}
+          <strong>Iris Species:</strong> {{ result|capitalize }}
         {% endif %}
       </div>
     {% endif %}
+
+    <div class="footer">
+      Made with 💖 by <a href="https://github.com/shreya-0718" target="_blank" style="font-weight: bold";>Shreya</a>
+    </div>
   </div>
 </body>
 </html>
