@@ -16,27 +16,34 @@
 </head>
 
 <body>
-  <div class="container py-5">
+  <div class="main">
     <!-- Main Heading -->
-    <h1 class="text-center mb-4">Iris Flower Classifier</h1>
+    <h1>Iris Flower Classifier</h1>
 
     <!-- Input form: sends data back to '/' via POST -->
     <form method="POST">
-      <div class="row g-3 mb-4">
-        <!-- Four inputs for the four measurements -->
-        <div class="col-md-3">
-          <input type="number" step="any" name="sepal_length" class="form-control" placeholder="Sepal Length" required>
+      <div class="input-row">
+        <div class="input-box">
+          <label>Sepal Length</label>
+          <input type="number" name="sepal_length" step="any" required>
         </div>
-        <div class="col-md-3">
-          <input type="number" step="any" name="sepal_width" class="form-control" placeholder="Sepal Width" required>
-        </div>
-        <div class="col-md-3">
-          <input type="number" step="any" name="petal_length" class="form-control" placeholder="Petal Length" required>
-        </div>
-        <div class="col-md-3">
-          <input type="number" step="any" name="petal_width" class="form-control" placeholder="Petal Width" required>
+        <div class="input-box">
+          <label>Sepal Width</label>
+          <input type="number" name="sepal_width" step="any" required>
         </div>
       </div>
+
+      <div class="input-row">
+        <div class="input-box">
+          <label>Petal Length</label>
+          <input type="number" name="petal_length" step="any" required>
+        </div>
+        <div class="input-box">
+          <label>Petal Width</label>
+          <input type="number" name="petal_width" step="any" required>
+        </div>
+      </div>
+
       <div class="text-center">
         <button type="submit" class="btn btn-primary btn-lg">Predict</button>
       </div>
@@ -44,13 +51,13 @@
 
     <!-- Show the prediction result if available -->
     {% if result %}
-    <div class="alert alert-info text-center mt-4">
-      {% if result == 'error' %}
-        <strong>Please enter valid numeric values!</strong>
-      {% else %}
-        <strong>Prediction:</strong> {{ result|capitalize }}
-      {% endif %}
-    </div>
+      <div class="{% if result == 'error' %}error-box{% else %}info-box{% endif %}">
+        {% if result == 'error' %}
+          <strong>Please enter valid numeric values!</strong>
+        {% else %}
+          <strong>Prediction:</strong> {{ result|capitalize }}
+        {% endif %}
+      </div>
     {% endif %}
   </div>
 </body>

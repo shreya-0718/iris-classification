@@ -1,13 +1,66 @@
 body {
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
-  font-family: sans-serif;
-  color: #333;
+  background: linear-gradient(to right, #e8e0fc, #decff3);
+  font-family: "Lucida Console", "Courier New", monospace;
+  color: #333333;
 }
+
 .btn-primary {
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #5d4edf;
+  border-color: #614edf;
 }
-.alert-info {
-  background-color: #d1ecf1;
-  border-color: #bee5eb;
+
+.error-box {
+  background-color: #ffe6e6;    /* soft red */
+  color: #990000;               /* dark red text */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.info-box {
+  background-color: #e6f4ff;    /* soft blue */
+  color: #004080;               /* darker blue text */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  margin: 5px;
+  margin-bottom: 20px;
+}
+
+.main {
+  text-align: center;
+  margin: 50px;
+  padding: 20px;
+  background-color: white;
+  border-color: #767676;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.input-box {
+  flex: 1;
+}
+
+.input-box label {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 10px;
 }

@@ -51,6 +51,7 @@ def index():
             result = species_map.get(pred_idx, 'Unknown')
 
         except Exception:
+
             result = 'error' # on invalid input
     # 5. Render the HTML template to show the result, passing in our prediction
     return render_template('index.html', result=result)
