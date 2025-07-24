@@ -24,6 +24,8 @@ species_map = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
 
 def index():
     result = None
+    image_filename = None
+
     if request.method == 'POST': # form was submitted 
 
         print("Form values:", request.form)
@@ -50,14 +52,15 @@ def index():
             # c) Map to species name
             result = species_map.get(pred_idx, 'Unknown')
 
-            if (float(request.form['petal_width']) == 4.0):
-                result = 'error'
+            image_filename = None
+            if result in species_map.values():
+                image_filename = f"images/iris_{result}.jpg"
 
         except Exception:
             result = 'error' # on invalid input
 
     # 5. Render the HTML template to show the result, passing in our prediction
-    return render_template('index.html', result=result)
+    return render_template('index.html', result=result, image_filename=image_filename)
 
 if __name__ == '__main__':
     # 6. Start the development server on port 8080 --> makes your computer listen for web requests on localhost:8080.

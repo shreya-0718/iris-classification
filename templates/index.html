@@ -62,11 +62,18 @@
         {% else %}
           <strong>Iris Species:</strong> {{ result|capitalize }}
         {% endif %}
+        {% if image_filename %}
+          <div class="flower-image-container">
+            <img src="{{ url_for('static', filename=image_filename) }}" alt="Image of Iris {{ result }}" class="flower-image">
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 
+    
+
     <div class="footer">
-      Made with 💖 by <a href="https://github.com/shreya-0718" target="_blank" style="font-weight: bold";>Shreya</a>
+      Made with 💖 by <a href="https://github.com/shreya-0718" target="_blank" style="font-weight: bold";>Shreya</a> 🌼
     </div>
   </div>
 </body>
