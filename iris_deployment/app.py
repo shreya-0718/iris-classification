@@ -56,8 +56,14 @@ def index():
             if result in species_map.values():
                 image_filename = f"images/iris_{result}.jpg"
 
+            if any(f < 0 for f in features):
+                result = 'error'  
+                image_filename=None
+          
         except Exception:
             result = 'error' # on invalid input
+            image_filename=None
+
 
     # 5. Render the HTML template to show the result, passing in our prediction
     return render_template('index.html', result=result, image_filename=image_filename)
@@ -65,3 +71,5 @@ def index():
 if __name__ == '__main__':
     # 6. Start the development server on port 8080 --> makes your computer listen for web requests on localhost:8080.
     app.run(host='0.0.0.0', port=8080, debug=True)
+
+# this app.py file was from a lesson in a summer program :)
